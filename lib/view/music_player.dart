@@ -15,6 +15,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
   MusicProvider? mpF;
   MusicProvider? mpT;
   @override
+  void initState() {
+    Provider.of<MusicProvider>(context,listen: false).initMusic();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     int i=ModalRoute.of(context)!.settings.arguments as int;
     mpF=Provider.of<MusicProvider>(context,listen: false);
@@ -51,14 +56,15 @@ class _MusicPlayerState extends State<MusicPlayer> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Slider(
-                  value: position.inSeconds.toDouble(), onChanged: (value) {
+                  value: position.inSeconds.toDouble(),
+                onChanged: (value) {
                     position=Duration(seconds: value.toInt());
-                    mpF!.assetsAudioPlayer.seek(position);
+                    mpT!.assetsAudioPlayer.seek(position);
                   },
                 max: mpT!.musicduration.inSeconds.toDouble(),
-                inactiveColor: Colors.grey,
-                activeColor: Colors.grey.shade400,
-                thumbColor: Colors.white,
+                // inactiveColor: Colors.grey,
+                // activeColor: Colors.grey.shade400,
+                // thumbColor: Colors.white,
               ),
               SizedBox(height: 10),
               Padding(
@@ -67,7 +73,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("${position}",style: TextStyle(color: Colors.white)),
-                    Text("${mpT!.musicduration.inMinutes.toDouble()}",style: TextStyle(color: Colors.white)),
+                    Text("${mpT!.musicduration}",style: TextStyle(color: Colors.white)),
                   ],
                 ),
               ),
