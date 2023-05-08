@@ -62,9 +62,9 @@ class _MusicPlayerState extends State<MusicPlayer> {
                     mpT!.assetsAudioPlayer.seek(position);
                   },
                 max: mpT!.musicduration.inSeconds.toDouble(),
-                // inactiveColor: Colors.grey,
-                // activeColor: Colors.grey.shade400,
-                // thumbColor: Colors.white,
+                inactiveColor: Colors.grey,
+                activeColor: Colors.grey.shade400,
+                thumbColor: Colors.white,
               ),
               SizedBox(height: 10),
               Padding(
