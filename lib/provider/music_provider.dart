@@ -54,11 +54,13 @@ class MusicProvider extends ChangeNotifier
   nextmusic()
   {
     assetsAudioPlayer.next();
+    isplay=true;
     notifyListeners();
   }
   permusic()
   {
     assetsAudioPlayer.previous();
+    isplay=true;
     notifyListeners();
   }
   audioduration()
